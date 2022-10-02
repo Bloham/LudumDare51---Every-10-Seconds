@@ -1,6 +1,5 @@
 extends HBoxContainer
 
-
 onready var circleButton = $Circle
 onready var poligonButton = $Poligon
 onready var viereckButton = $Viereck
@@ -10,6 +9,7 @@ signal circle
 signal poligon
 signal viereck
 signal dreieck
+
 
 func deactiveButton(button1, button2, button3):
 	button1.margin_top = 0

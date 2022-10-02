@@ -2,6 +2,7 @@ extends Node2D
 
 onready var done = $DreieckDone
 onready var notDone = $DreieckNotDone
+onready var areaGroup = $Area2D
 
 var canBeDestroyed = false
 
@@ -18,5 +19,7 @@ func _on_Area2D_area_exited(area):
 		canBeDestroyed = false
 
 func fixIt():
+	areaGroup.add_to_group("Fixed")
+	#areaGroup.remove_from_group("NotFixed")
 	done.visible = true
 	notDone.visible = false

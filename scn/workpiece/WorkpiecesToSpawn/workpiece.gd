@@ -11,3 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	self.position.x += delta * scroll_speed
+
+
+func _on_Timer_timeout():
+	self.queue_free()

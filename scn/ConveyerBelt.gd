@@ -1,6 +1,8 @@
 extends TextureRect
 
-export (float) var scroll_speed = -0.0524
+onready var ripples1 = $Ripples1
+onready var ripples2 = $Ripples2
+var scrollspeed = 170
 
-func _ready():
-	self.material.set_shader_param("scroll_speed", scroll_speed)
+func _physics_process(delta):
+	ripples1 += delta * scrollspeed

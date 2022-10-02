@@ -7,6 +7,21 @@ onready var toolDreieck = $CanvasLayer/ToolArm/Tool/ToolDreieck
 onready var toolPoligon = $CanvasLayer/ToolArm/Tool/ToolPoligon
 onready var toolViereck = $CanvasLayer/ToolArm/Tool/ToolViereck
 
+onready var checkLight = $CanvasLayer/RightPanel/RightPanelLights/CheckLamp
+onready var checkLightTimer = $CanvasLayer/RightPanel/RightPanelLights/CheckLampTimer
+onready var errorLamp1 = $CanvasLayer/RightPanel/RightPanelLights/Error1
+onready var errorLamp2 = $CanvasLayer/RightPanel/RightPanelLights/Error2
+onready var errorLamp3 = $CanvasLayer/RightPanel/RightPanelLights/Error3
+
+onready var UIScreen = $CanvasLayer/UIScreen
+
+onready var scoreLable = $CanvasLayer/Machine/ScoreContainer/MarginContainer/ScoreLable
+
+var errors = 0
+var score = 0
+var difficulty = 1
+
+
 #var currentTool = null
 var rotationSpeed = 25
 #var isRotating = false
@@ -31,6 +46,10 @@ func _input(event):
 			Autoload.isRotating = true
 		else:
 			Autoload.isRotating = false
+	
+	if event.is_action_pressed("ui_cancel"):
+		UIScreen.openPauseMenue()
+		print("Cancle has been pressed")
 
 
 func _on_circle():
@@ -60,3 +79,27 @@ func _on_viereck():
 	Autoload.toolIsDreieck = false
 	Autoload.toolIsPoligon = false
 	Autoload.toolIsViereck = true
+
+
+func _on_CheckPanel_checked():
+	checkLight.visible = true
+	checkLightTimer.start()
+	score += 10 * difficulty * difficulty
+	scoreLable.text = str(score)
+
+
+func _on_CheckPanel_error():
+	errors += 1
+	print("ERROR COUNT: ", errors)
+	if errors == 1:
+		errorLamp1.visible = true
+	if errors == 2:
+		errorLamp2.visible = true
+	if errors == 3:
+		errorLamp3.visible = true
+		UIScreen.openGameOverMenue()
+
+func _on_CheckLampTimer_timeout():
+	checkLight.visible = false
+
+

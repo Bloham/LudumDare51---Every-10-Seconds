@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/workpiece.gd" type="Script" id=1]
 [ext_resource path="res://scn/workpiece/BasePlate.png" type="Texture" id=2]
 [ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/poligon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/circle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/viereck.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/dreieck.tscn" type="PackedScene" id=6]
 
 [node name="Workpiece1" type="Sprite"]
 position = Vector2( -520, 540 )
@@ -16,13 +14,13 @@ script = ExtResource( 1 )
 position = Vector2( 266, -60 )
 
 [node name="poligon2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -109, -91 )
-
-[node name="viereck" parent="." instance=ExtResource( 5 )]
-position = Vector2( 137, 59 )
-
-[node name="dreieck" parent="." instance=ExtResource( 6 )]
-position = Vector2( -111, 53 )
+position = Vector2( -17, -77 )
 
 [node name="circle" parent="." instance=ExtResource( 4 )]
-position = Vector2( -297, -22 )
+position = Vector2( -195, 53 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

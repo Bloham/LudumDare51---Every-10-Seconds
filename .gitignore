@@ -1,6 +1,9 @@
 # Build folder
 builds/
 
+# psd data
+psd/
+
 # Godot-specific ignores
 .import/
 export.cfg

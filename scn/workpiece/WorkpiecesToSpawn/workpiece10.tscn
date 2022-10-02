@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/workpiece.gd" type="Script" id=1]
+[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/circle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/dreieck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/poligon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/Fixtures/viereck.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scn/workpiece/BasePlate3.png" type="Texture" id=6]
+
+[node name="Workpiece" type="Sprite"]
+position = Vector2( -520, 540 )
+texture = ExtResource( 6 )
+script = ExtResource( 1 )
+
+[node name="viereck" parent="." instance=ExtResource( 5 )]
+position = Vector2( -255, 15 )
+
+[node name="viereck5" parent="." instance=ExtResource( 5 )]
+position = Vector2( -175, -63 )
+
+[node name="viereck6" parent="." instance=ExtResource( 5 )]
+position = Vector2( -209, -112 )
+
+[node name="viereck7" parent="." instance=ExtResource( 5 )]
+position = Vector2( -306, -117 )
+
+[node name="viereck8" parent="." instance=ExtResource( 5 )]
+position = Vector2( -394, -40 )
+
+[node name="viereck4" parent="." instance=ExtResource( 5 )]
+position = Vector2( -261, 153 )
+
+[node name="viereck2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -130, 88 )
+
+[node name="viereck3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -51, -4 )
+
+[node name="dreieck2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -361, 81 )
+
+[node name="dreieck3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -329, 41 )
+
+[node name="dreieck5" parent="." instance=ExtResource( 3 )]
+position = Vector2( -222, 95 )
+
+[node name="dreieck6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 118, -30 )
+
+[node name="dreieck4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -118, -3 )
+
+[node name="poligon" parent="." instance=ExtResource( 4 )]
+position = Vector2( 115, 35 )
+
+[node name="poligon3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 261, -82 )
+
+[node name="poligon4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 165, -28 )
+
+[node name="poligon2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 224, -12 )
+
+[node name="circle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 241, 161 )
+
+[node name="circle2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 291, 83 )
+
+[node name="circle3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 369, 21 )
+
+[node name="circle4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 355, -90 )
+
+[node name="circle5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 235, -161 )
+
+[node name="circle6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 116, -100 )
+
+[node name="circle7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 26, -41 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
