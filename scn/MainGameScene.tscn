@@ -1,0 +1,167 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://psd/MainInterface.png" type="Texture" id=1]
+[ext_resource path="res://scn/machine/cardDreieckEmpty.png" type="Texture" id=2]
+[ext_resource path="res://scn/machine/cardViereckEmpty.png" type="Texture" id=3]
+[ext_resource path="res://scn/machine/cardViereck.png" type="Texture" id=4]
+[ext_resource path="res://scn/machine/cardDreieck.png" type="Texture" id=5]
+[ext_resource path="res://scn/machine/cardCircleEmpty.png" type="Texture" id=6]
+[ext_resource path="res://scn/machine/cardPoligon.png" type="Texture" id=7]
+[ext_resource path="res://scn/machine/ConveyerBelt.png" type="Texture" id=8]
+[ext_resource path="res://scn/machine/GlassPanel.png" type="Texture" id=9]
+[ext_resource path="res://scn/machine/RightPanel.png" type="Texture" id=10]
+[ext_resource path="res://scn/machine/cardPoligonEmpty.png" type="Texture" id=11]
+[ext_resource path="res://scn/machine/MainInterface.png" type="Texture" id=12]
+[ext_resource path="res://scn/machine/Background.png" type="Texture" id=13]
+[ext_resource path="res://scn/machine/leftPanel.png" type="Texture" id=14]
+[ext_resource path="res://scn/machine/cardCircle.png" type="Texture" id=15]
+[ext_resource path="res://scn/machine/BackgroundMachine.png" type="Texture" id=16]
+[ext_resource path="res://scn/Cards.gd" type="Script" id=17]
+[ext_resource path="res://scn/ConveyerBelt.gd" type="Script" id=18]
+[ext_resource path="res://scn/ToolArm.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scn/MainGameScene.gd" type="Script" id=20]
+[ext_resource path="res://scn/Spawner.tscn" type="PackedScene" id=21]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform float scroll_speed;
+void fragment () {
+	vec2 shifteduv = UV;
+	shifteduv.x += TIME * scroll_speed;
+	vec4 col = texture(TEXTURE,shifteduv);
+	COLOR = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/scroll_speed = null
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 1, 0 )
+script = ExtResource( 20 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 13 )
+
+[node name="MachineBackground" type="TextureRect" parent="CanvasLayer"]
+margin_left = 443.0
+margin_top = 195.0
+margin_right = 1498.0
+margin_bottom = 899.0
+mouse_filter = 2
+texture = ExtResource( 16 )
+
+[node name="ConveyerBelt" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 2 )
+margin_top = 298.0
+margin_right = 1920.0
+margin_bottom = 798.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+stretch_mode = 2
+script = ExtResource( 18 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 426.0
+margin_top = -301.0
+margin_right = -402.0
+margin_bottom = -148.0
+mouse_filter = 2
+alignment = 2
+script = ExtResource( 17 )
+
+[node name="Circle" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+margin_right = 270.0
+margin_bottom = 153.0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Poligon" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+margin_left = 274.0
+margin_right = 544.0
+margin_bottom = 153.0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 11 )
+
+[node name="Viereck" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+margin_left = 548.0
+margin_right = 818.0
+margin_bottom = 153.0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+
+[node name="Dreieck" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+margin_left = 822.0
+margin_right = 1092.0
+margin_bottom = 153.0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 2 )
+
+[node name="Spawner" parent="CanvasLayer" instance=ExtResource( 21 )]
+
+[node name="ToolArm" parent="CanvasLayer" instance=ExtResource( 19 )]
+position = Vector2( 1, 0 )
+
+[node name="Machine" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 12 )
+
+[node name="Glass" type="TextureRect" parent="CanvasLayer"]
+margin_left = 443.0
+margin_top = 195.0
+margin_right = 1498.0
+margin_bottom = 899.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+
+[node name="LeftPanel" type="TextureRect" parent="CanvasLayer"]
+margin_left = 244.0
+margin_top = 310.0
+margin_right = 405.0
+margin_bottom = 784.0
+mouse_filter = 2
+texture = ExtResource( 14 )
+
+[node name="LeftPanel2" type="TextureRect" parent="CanvasLayer"]
+margin_left = 1538.0
+margin_top = 313.0
+margin_right = 1702.0
+margin_bottom = 787.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+
+[node name="VorlageMainInterface" type="Sprite" parent="."]
+visible = false
+position = Vector2( 960, 540 )
+texture = ExtResource( 1 )
+
+[connection signal="circle" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_circle"]
+[connection signal="dreieck" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_dreieck"]
+[connection signal="poligon" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_poligon"]
+[connection signal="viereck" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_viereck"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Circle" to="CanvasLayer/HBoxContainer" method="_on_Circle_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Poligon" to="CanvasLayer/HBoxContainer" method="_on_Poligon_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Viereck" to="CanvasLayer/HBoxContainer" method="_on_Viereck_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Dreieck" to="CanvasLayer/HBoxContainer" method="_on_Dreieck_pressed"]
+[connection signal="circle" from="CanvasLayer/ToolArm" to="." method="_on_circle"]
+[connection signal="dreieck" from="CanvasLayer/ToolArm" to="." method="_on_dreieck"]
+[connection signal="poligon" from="CanvasLayer/ToolArm" to="." method="_on_poligon"]
+[connection signal="viereck" from="CanvasLayer/ToolArm" to="." method="_on_viereck"]
