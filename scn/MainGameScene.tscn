@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://psd/MainInterface.png" type="Texture" id=1]
 [ext_resource path="res://scn/machine/cardDreieckEmpty.png" type="Texture" id=2]
@@ -29,15 +29,17 @@
 [ext_resource path="res://scn/machine/Ripples.png" type="Texture" id=27]
 [ext_resource path="res://scn/TimeContainer.gd" type="Script" id=28]
 [ext_resource path="res://scn/workpiece/WorkpiecesToSpawn/workpiece1.tscn" type="PackedScene" id=29]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://project/Fonts/Roboto-Black.ttf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 66
-outline_size = 3
-outline_color = Color( 0.337255, 0.482353, 0.47451, 1 )
-font_data = SubResource( 1 )
+[ext_resource path="res://scn/DifficultyPanel.gd" type="Script" id=30]
+[ext_resource path="res://project/main_theme.tres" type="Theme" id=31]
+[ext_resource path="res://project/text_theme.tres" type="Theme" id=32]
+[ext_resource path="res://scn/Sound.gd" type="Script" id=33]
+[ext_resource path="res://sound/tool1.wav" type="AudioStream" id=34]
+[ext_resource path="res://sound/check.wav" type="AudioStream" id=35]
+[ext_resource path="res://sound/error.wav" type="AudioStream" id=36]
+[ext_resource path="res://sound/last error.wav" type="AudioStream" id=37]
+[ext_resource path="res://sound/startmachine.wav" type="AudioStream" id=38]
+[ext_resource path="res://sound/button.wav" type="AudioStream" id=39]
+[ext_resource path="res://sound/7 - Henoch Lebowitz - Secret Sanity.mp3" type="AudioStream" id=40]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -159,114 +161,123 @@ rect_min_size = Vector2( 512, 256 )
 
 [node name="Pause" type="Label" parent="CanvasLayer/UIScreen/CenterContainer/PauseMenue"]
 margin_right = 512.0
-margin_bottom = 14.0
+margin_bottom = 71.0
+theme = ExtResource( 31 )
 text = "Pause"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UIScreen/CenterContainer/PauseMenue"]
-margin_top = 18.0
+margin_top = 75.0
 margin_right = 512.0
-margin_bottom = 22.0
+margin_bottom = 79.0
 
 [node name="ResumeGame" type="Button" parent="CanvasLayer/UIScreen/CenterContainer/PauseMenue"]
-margin_top = 26.0
+margin_top = 83.0
 margin_right = 512.0
-margin_bottom = 139.0
+margin_bottom = 167.0
 size_flags_vertical = 3
+theme = ExtResource( 31 )
 text = "Resume"
 
 [node name="RestartGame" type="Button" parent="CanvasLayer/UIScreen/CenterContainer/PauseMenue"]
-margin_top = 143.0
+margin_top = 171.0
 margin_right = 512.0
 margin_bottom = 256.0
 size_flags_vertical = 3
+theme = ExtResource( 31 )
 text = "Restart"
 
 [node name="GameOverMenue" type="VBoxContainer" parent="CanvasLayer/UIScreen/CenterContainer"]
 visible = false
-margin_left = 271.0
+margin_left = 213.0
 margin_top = 224.0
-margin_right = 783.0
+margin_right = 841.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 512, 256 )
 
 [node name="GameOver" type="Label" parent="CanvasLayer/UIScreen/CenterContainer/GameOverMenue"]
-margin_right = 512.0
-margin_bottom = 14.0
+margin_right = 645.0
+margin_bottom = 71.0
+theme = ExtResource( 31 )
 text = "Game Over"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UIScreen/CenterContainer/GameOverMenue"]
-margin_top = 18.0
-margin_right = 512.0
-margin_bottom = 22.0
+margin_top = 75.0
+margin_right = 645.0
+margin_bottom = 79.0
 
 [node name="GameText" type="Label" parent="CanvasLayer/UIScreen/CenterContainer/GameOverMenue"]
-margin_top = 26.0
-margin_right = 512.0
-margin_bottom = 91.0
-text = "The line manager is not happy with your results. 
-You had too many ERRORS!
+margin_top = 83.0
+margin_right = 645.0
+margin_bottom = 188.0
+theme = ExtResource( 32 )
+text = "The manager is not happy with your results. 
+You made too many mistakes!
 
-How long did you manage to be on line? Post your result in the Comments!"
+How long did you manage to keep up? Post your result in the comments!"
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UIScreen/CenterContainer/GameOverMenue"]
-margin_top = 95.0
-margin_right = 512.0
-margin_bottom = 99.0
+margin_top = 192.0
+margin_right = 645.0
+margin_bottom = 196.0
 
 [node name="RestartGame" type="Button" parent="CanvasLayer/UIScreen/CenterContainer/GameOverMenue"]
-margin_top = 103.0
-margin_right = 512.0
+margin_top = 200.0
+margin_right = 645.0
 margin_bottom = 256.0
 size_flags_vertical = 3
+theme = ExtResource( 31 )
 text = "Next Worker"
 
 [node name="StartScreen" type="VBoxContainer" parent="CanvasLayer/UIScreen/CenterContainer"]
 visible = false
-margin_left = 271.0
-margin_top = 224.0
-margin_right = 783.0
-margin_bottom = 480.0
+margin_left = 220.0
+margin_top = 134.0
+margin_right = 835.0
+margin_bottom = 569.0
 rect_min_size = Vector2( 512, 256 )
 
 [node name="Title" type="Label" parent="CanvasLayer/UIScreen/CenterContainer/StartScreen"]
-margin_right = 512.0
-margin_bottom = 31.0
+margin_right = 615.0
+margin_bottom = 145.0
+theme = ExtResource( 31 )
 text = "De-Press-ING
 Corporate"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UIScreen/CenterContainer/StartScreen"]
-margin_top = 35.0
-margin_right = 512.0
-margin_bottom = 39.0
+margin_top = 149.0
+margin_right = 615.0
+margin_bottom = 153.0
 
 [node name="WelcomeText" type="Label" parent="CanvasLayer/UIScreen/CenterContainer/StartScreen"]
-margin_top = 43.0
-margin_right = 512.0
-margin_bottom = 176.0
-text = "Hello Worker,
-We are glad you are here. 
-Your goal is it to fix as many items that come down this production line.
+margin_top = 157.0
+margin_right = 615.0
+margin_bottom = 370.0
+theme = ExtResource( 32 )
+text = "Hello worker,
+we are glad you are here. 
+Your goal is it to fix as many items as possible on this production line.
 
-Use your MOUSE to navigate the Tool Arm. 
+Use your MOUSE to navigate the Tool arm. 
 You can switch tools by pressing on them at the bottom of the window.
 Use the right tool for each element.
-HOLD you mousebutton pressed to ACTIVATE your Tool"
+HOLD the mouse button to ACTIVATE your tool."
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UIScreen/CenterContainer/StartScreen"]
-margin_top = 180.0
-margin_right = 512.0
-margin_bottom = 184.0
+margin_top = 374.0
+margin_right = 615.0
+margin_bottom = 378.0
 
 [node name="ResumeGame2" type="Button" parent="CanvasLayer/UIScreen/CenterContainer/StartScreen"]
-margin_top = 188.0
-margin_right = 512.0
-margin_bottom = 256.0
+margin_top = 382.0
+margin_right = 615.0
+margin_bottom = 435.0
 size_flags_vertical = 3
+theme = ExtResource( 31 )
 text = "Start Working"
 
 [node name="Machine" type="TextureRect" parent="CanvasLayer"]
@@ -282,14 +293,15 @@ margin_right = 871.0
 margin_bottom = 107.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Machine/ScoreContainer"]
-margin_left = 121.0
-margin_right = 159.0
-margin_bottom = 79.0
+margin_left = 122.0
+margin_top = 4.0
+margin_right = 157.0
+margin_bottom = 75.0
 
 [node name="ScoreLable" type="Label" parent="CanvasLayer/Machine/ScoreContainer/MarginContainer"]
-margin_right = 38.0
-margin_bottom = 79.0
-custom_fonts/font = SubResource( 2 )
+margin_right = 35.0
+margin_bottom = 71.0
+theme = ExtResource( 31 )
 text = "0"
 align = 1
 
@@ -301,26 +313,28 @@ margin_bottom = 107.0
 script = ExtResource( 28 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Machine/TimeContainer"]
-margin_left = 54.0
-margin_right = 226.0
-margin_bottom = 79.0
+margin_left = 61.0
+margin_top = 4.0
+margin_right = 219.0
+margin_bottom = 75.0
 
 [node name="TimeLable" type="Label" parent="CanvasLayer/Machine/TimeContainer/MarginContainer"]
-margin_right = 172.0
-margin_bottom = 79.0
-custom_fonts/font = SubResource( 2 )
+margin_right = 158.0
+margin_bottom = 71.0
+theme = ExtResource( 31 )
 text = "00:00"
 align = 1
 
-[node name="LeftPanel" type="TextureRect" parent="CanvasLayer"]
+[node name="DifficultyPanel" type="TextureRect" parent="CanvasLayer"]
 margin_left = 228.0
 margin_top = 273.0
 margin_right = 395.0
 margin_bottom = 818.0
 mouse_filter = 2
 texture = ExtResource( 25 )
+script = ExtResource( 30 )
 
-[node name="LeftPanelLights" type="TextureRect" parent="CanvasLayer/LeftPanel"]
+[node name="LeftPanelLights" type="TextureRect" parent="CanvasLayer/DifficultyPanel"]
 margin_left = 4.0
 margin_top = 31.0
 margin_right = 165.0
@@ -328,65 +342,68 @@ margin_bottom = 505.0
 mouse_filter = 2
 texture = ExtResource( 14 )
 
-[node name="Difficulty1" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty1" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 397 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty2" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty2" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 355 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty3" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty3" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 313 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty4" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty4" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 271 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty5" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty5" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 229 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty6" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty6" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 188 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty7" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty7" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 146 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty8" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty8" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 104 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty9" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty9" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
 modulate = Color( 0.494118, 1, 0.721569, 1 )
 position = Vector2( 79, 62 )
 texture = ExtResource( 26 )
 
-[node name="Difficulty10" type="Sprite" parent="CanvasLayer/LeftPanel/LeftPanelLights"]
+[node name="Difficulty10" type="Sprite" parent="CanvasLayer/DifficultyPanel/LeftPanelLights"]
 visible = false
-modulate = Color( 0.92549, 0.196078, 0.290196, 1 )
+modulate = Color( 1, 0.4, 0.4, 1 )
 position = Vector2( 79, 21 )
 texture = ExtResource( 26 )
+
+[node name="BlinkLichter" type="Timer" parent="CanvasLayer/DifficultyPanel"]
+wait_time = 0.5
 
 [node name="RightPanel" type="TextureRect" parent="CanvasLayer"]
 margin_left = 1545.0
@@ -406,25 +423,25 @@ texture = ExtResource( 10 )
 
 [node name="CheckLamp" type="Sprite" parent="CanvasLayer/RightPanel/RightPanelLights"]
 visible = false
-modulate = Color( 0.184314, 0.72549, 0, 1 )
+modulate = Color( 0.560784, 1, 0.768627, 1 )
 position = Vector2( 81, 29 )
 texture = ExtResource( 22 )
 
 [node name="Error3" type="Sprite" parent="CanvasLayer/RightPanel/RightPanelLights"]
 visible = false
-modulate = Color( 0.72549, 0, 0, 1 )
+modulate = Color( 0.952941, 0.396078, 0.396078, 1 )
 position = Vector2( 82, 147 )
 texture = ExtResource( 22 )
 
 [node name="Error2" type="Sprite" parent="CanvasLayer/RightPanel/RightPanelLights"]
 visible = false
-modulate = Color( 0.72549, 0, 0, 1 )
+modulate = Color( 0.952941, 0.396078, 0.396078, 1 )
 position = Vector2( 84, 272 )
 texture = ExtResource( 22 )
 
 [node name="Error1" type="Sprite" parent="CanvasLayer/RightPanel/RightPanelLights"]
 visible = false
-modulate = Color( 0.72549, 0, 0, 1 )
+modulate = Color( 0.952941, 0.396078, 0.396078, 1 )
 position = Vector2( 83, 393 )
 texture = ExtResource( 22 )
 
@@ -443,13 +460,45 @@ visible = false
 position = Vector2( 961, 540 )
 texture = ExtResource( 1 )
 
+[node name="Sound" type="Node" parent="."]
+script = ExtResource( 33 )
+
+[node name="ToolAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 34 )
+
+[node name="CheckLightAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 35 )
+
+[node name="ErrorAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 36 )
+
+[node name="LastErrorAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 37 )
+
+[node name="StartMachineAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 38 )
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 39 )
+
+[node name="MusikAudio" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 40 )
+
+[connection signal="errorAudio" from="." to="Sound" method="_on_Node2D_errorAudio"]
+[connection signal="lastErrorAudio" from="." to="Sound" method="_on_Node2D_lastErrorAudio"]
+[connection signal="playChecklightAudio" from="." to="Sound" method="_on_Node2D_playChecklightAudio"]
+[connection signal="startMachineAudio" from="." to="Sound" method="_on_Node2D_startMachineAudio"]
 [connection signal="circle" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_circle"]
 [connection signal="dreieck" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_dreieck"]
 [connection signal="poligon" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_poligon"]
 [connection signal="viereck" from="CanvasLayer/HBoxContainer" to="CanvasLayer/ToolArm" method="_on_viereck"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Circle" to="Sound" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Circle" to="CanvasLayer/HBoxContainer" method="_on_Circle_pressed"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Poligon" to="Sound" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Poligon" to="CanvasLayer/HBoxContainer" method="_on_Poligon_pressed"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Viereck" to="Sound" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Viereck" to="CanvasLayer/HBoxContainer" method="_on_Viereck_pressed"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Dreieck" to="Sound" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Dreieck" to="CanvasLayer/HBoxContainer" method="_on_Dreieck_pressed"]
 [connection signal="circle" from="CanvasLayer/ToolArm" to="." method="_on_circle"]
 [connection signal="dreieck" from="CanvasLayer/ToolArm" to="." method="_on_dreieck"]
@@ -458,7 +507,13 @@ texture = ExtResource( 1 )
 [connection signal="checked" from="CanvasLayer/CheckPanel" to="." method="_on_CheckPanel_checked"]
 [connection signal="error" from="CanvasLayer/CheckPanel" to="." method="_on_CheckPanel_error"]
 [connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/PauseMenue/ResumeGame" to="CanvasLayer/UIScreen" method="_on_ResumeGame_button_down"]
+[connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/PauseMenue/ResumeGame" to="Sound" method="_on_button_down"]
 [connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/PauseMenue/RestartGame" to="CanvasLayer/UIScreen" method="_on_RestartGame_button_down"]
+[connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/PauseMenue/RestartGame" to="Sound" method="_on_button_down"]
 [connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/GameOverMenue/RestartGame" to="CanvasLayer/UIScreen" method="_on_RestartGame_button_down"]
+[connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/GameOverMenue/RestartGame" to="Sound" method="_on_button_down"]
 [connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/StartScreen/ResumeGame2" to="CanvasLayer/UIScreen" method="_on_ResumeGame_button_down"]
+[connection signal="button_down" from="CanvasLayer/UIScreen/CenterContainer/StartScreen/ResumeGame2" to="Sound" method="_on_button_down"]
+[connection signal="timeout" from="CanvasLayer/DifficultyPanel/BlinkLichter" to="CanvasLayer/DifficultyPanel" method="_on_BlinkLichter_timeout"]
 [connection signal="timeout" from="CanvasLayer/RightPanel/RightPanelLights/CheckLampTimer" to="." method="_on_CheckLampTimer_timeout"]
+[connection signal="finished" from="Sound/MusikAudio" to="Sound" method="_on_MusikAudio_finished"]

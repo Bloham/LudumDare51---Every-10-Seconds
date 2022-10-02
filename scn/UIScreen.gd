@@ -42,6 +42,7 @@ func _on_RestartGame_button_down():
 	Autoload.toolIsPoligon = false
 	Autoload.toolIsDreieck = false
 	Autoload.toolIsViereck = false
+	Autoload.difficulty = 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 

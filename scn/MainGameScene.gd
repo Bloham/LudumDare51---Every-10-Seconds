@@ -19,8 +19,11 @@ onready var scoreLable = $CanvasLayer/Machine/ScoreContainer/MarginContainer/Sco
 
 var errors = 0
 var score = 0
-var difficulty = 1
 
+signal playChecklightAudio
+signal errorAudio
+signal lastErrorAudio
+signal startMachineAudio
 
 #var currentTool = null
 var rotationSpeed = 25
@@ -29,7 +32,7 @@ var rotationSpeed = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	emit_signal("startMachineAudio")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -83,19 +86,25 @@ func _on_viereck():
 
 func _on_CheckPanel_checked():
 	checkLight.visible = true
+	emit_signal("playChecklightAudio")
 	checkLightTimer.start()
-	score += 10 * difficulty * difficulty
+	score += 5 * Autoload.difficulty
 	scoreLable.text = str(score)
+	Autoload.difficulty += 0.1
+
 
 
 func _on_CheckPanel_error():
 	errors += 1
 	print("ERROR COUNT: ", errors)
 	if errors == 1:
+		emit_signal("errorAudio")
 		errorLamp1.visible = true
 	if errors == 2:
+		emit_signal("errorAudio")
 		errorLamp2.visible = true
 	if errors == 3:
+		emit_signal("lastErrorAudio")
 		errorLamp3.visible = true
 		UIScreen.openGameOverMenue()
 

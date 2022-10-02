@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://project/Fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+outline_color = Color( 0.337255, 0.482353, 0.47451, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.576471, 0.486275, 0.47451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.898039, 0.807843, 0.705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.423529, 0.32549, 0.458824, 1 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://project/Fonts/Roboto-Black.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 60
+outline_size = 2
+outline_color = Color( 0.337255, 0.482353, 0.47451, 1 )
+use_filter = true
+font_data = SubResource( 6 )
+
+[resource]
+Button/colors/font_color = Color( 0.337255, 0.482353, 0.47451, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = SubResource( 2 )
+Button/styles/focus = SubResource( 3 )
+Button/styles/hover = null
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
+Label/fonts/font = SubResource( 7 )

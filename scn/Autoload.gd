@@ -6,3 +6,4 @@ var toolIsCircle = false
 var toolIsPoligon = false
 var toolIsDreieck = false
 var toolIsViereck = false
+var difficulty = 1
